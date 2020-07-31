@@ -89,6 +89,6 @@ def HLM_model(train,days):
     st.write(fig)
     
 pred_days=st.sidebar.slider("Select No of days for which price need to be predicted",min_value=1,max_value=30,step=1)
-HLM_model(data['Close'],pred_days)
+HLM_model(data['Close'].values.tolist(),pred_days)
 st.sidebar.image('gaurav.jpg',caption= "Gaurav Rai")
 st.sidebar.info("I have more then 2 years of experience in data science and web app development with specialization in Time Series Analysis....................You can connect with me on email id: gauravcs08@gmail.com")
