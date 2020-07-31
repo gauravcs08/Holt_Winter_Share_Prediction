@@ -40,7 +40,7 @@ data = nsepy.get_history(symbol=stock,start=start_date,end=end_date)
 col=data.columns.tolist()
 @st.cache(ttl=3600*24, show_spinner=False)
 def load_data():
-    share_list=pd.read_csv('https://www1.nseindia.com/content/equities/EQUITY_L.csv')
+    share_list=pd.read_csv(DATA_PATH.joinpath("EQUITY_L.csv"))
     data = nsepy.get_history(symbol=stock,start=start_date,end=end_date)
     return share_list,data
 share_list,data =load_data()
