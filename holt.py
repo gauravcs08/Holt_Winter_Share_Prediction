@@ -36,7 +36,12 @@ if start_date > end_date:
 stock=st.sidebar.selectbox("Select the Equity listed on NSE",share_list['SYMBOL'])
 data = nsepy.get_history(symbol=stock,start=start_date,end=end_date)
 col=data.columns.tolist()
-
+@st.cache(ttl=3600*24, show_spinner=False)
+def load_data():
+    share_list=pd.read_csv('https://www1.nseindia.com/content/equities/EQUITY_L.csv')
+    data = nsepy.get_history(symbol=stock,start=start_date,end=end_date)
+    return share_list,data
+share_list,data =load_data()
 #'''------------Candle Stick Graph--------------------------'''
 
 candle_graph= make_subplots(rows=2, cols=1,shared_yaxes=False,shared_xaxes=True,vertical_spacing = 0.01,row_heights=[500,100])
