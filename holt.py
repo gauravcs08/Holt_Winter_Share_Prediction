@@ -13,9 +13,11 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit.components.v1 as components
+import pathlib
+DATA_PATH = pathlib.Path(__file__).parent.joinpath("data").resolve()
 
 # We would like all available data from 01/01/2000 until 12/31/2016.
-share_list=pd.read_csv('https://www1.nseindia.com/content/equities/EQUITY_L.csv')
+share_list=pd.read_csv(DATA_PATH.joinpath("EQUITY_L.csv"))
 today = dt.date.today()
 yesterday = today-dt.timedelta(days=10)
 
